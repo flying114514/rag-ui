@@ -1,0 +1,80 @@
+<h2>整体布局结构</h2>
+<p class="subtitle">选择你倾向的产品导航模式 — 这决定了整个产品的信息架构</p>
+
+<div class="cards">
+  <div class="card" data-choice="sidebar" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:20px;background:#0a0a0f;">
+      <div style="display:flex;height:180px;gap:0;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);">
+        <div style="width:56px;background:#111118;display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:14px;">
+          <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#6366f1,#8b5cf6);"></div>
+          <div style="width:20px;height:20px;border-radius:6px;background:rgba(255,255,255,0.08);"></div>
+          <div style="width:20px;height:20px;border-radius:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(99,102,241,0.5);"></div>
+          <div style="width:20px;height:20px;border-radius:6px;background:rgba(255,255,255,0.08);"></div>
+          <div style="width:20px;height:20px;border-radius:6px;background:rgba(255,255,255,0.08);"></div>
+        </div>
+        <div style="flex:1;background:#09090f;padding:16px;">
+          <div style="height:10px;width:120px;background:rgba(255,255,255,0.12);border-radius:4px;margin-bottom:16px;"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div style="height:50px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(255,255,255,0.06);"></div>
+            <div style="height:50px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(255,255,255,0.06);"></div>
+            <div style="height:50px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(255,255,255,0.06);"></div>
+            <div style="height:50px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(255,255,255,0.06);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. 侧边栏导航 (Linear / ChatGPT)</h3>
+      <p>左侧图标栏 + 右侧内容区。模块切换高效，信息层级清晰，适合多功能 AI 工具。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="topnav" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:20px;background:#0a0a0f;">
+      <div style="height:180px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);">
+        <div style="height:44px;background:#111118;display:flex;align-items:center;padding:0 16px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#6366f1,#8b5cf6);"></div>
+          <div style="display:flex;gap:8px;">
+            <div style="height:8px;width:40px;background:rgba(255,255,255,0.15);border-radius:3px;"></div>
+            <div style="height:8px;width:40px;background:rgba(255,255,255,0.08);border-radius:3px;"></div>
+            <div style="height:8px;width:40px;background:rgba(255,255,255,0.08);border-radius:3px;"></div>
+            <div style="height:8px;width:40px;background:rgba(255,255,255,0.08);border-radius:3px;"></div>
+          </div>
+        </div>
+        <div style="padding:16px;background:#09090f;">
+          <div style="height:10px;width:160px;background:rgba(255,255,255,0.1);border-radius:4px;margin-bottom:14px;"></div>
+          <div style="height:80px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid rgba(255,255,255,0.06);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. 顶部导航 (Vercel / Stripe)</h3>
+      <p>水平导航条 + 全宽内容区。视觉开阔，内容展示空间最大化，适合数据密集型页面。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="hybrid" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:20px;background:#0a0a0f;">
+      <div style="display:flex;height:180px;gap:0;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);">
+        <div style="width:200px;background:#111118;padding:12px;display:flex;flex-direction:column;gap:6px;border-right:1px solid rgba(255,255,255,0.06);">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#6366f1,#8b5cf6);"></div>
+            <div style="height:8px;width:60px;background:rgba(255,255,255,0.12);border-radius:3px;"></div>
+          </div>
+          <div style="height:28px;background:rgba(99,102,241,0.12);border-radius:6px;border:1px solid rgba(99,102,241,0.2);"></div>
+          <div style="height:28px;background:rgba(255,255,255,0.04);border-radius:6px;"></div>
+          <div style="height:28px;background:rgba(255,255,255,0.04);border-radius:6px;"></div>
+          <div style="height:28px;background:rgba(255,255,255,0.04);border-radius:6px;"></div>
+        </div>
+        <div style="flex:1;background:#09090f;padding:14px;">
+          <div style="height:8px;width:100px;background:rgba(255,255,255,0.08);border-radius:3px;margin-bottom:12px;"></div>
+          <div style="height:100px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid rgba(255,255,255,0.06);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. 混合式 (Notion / Linear Pro)</h3>
+      <p>可收起侧边栏（带文字标签）+ 内容区。兼顾导航深度和空间利用，支持子级导航。</p>
+    </div>
+  </div>
+</div>

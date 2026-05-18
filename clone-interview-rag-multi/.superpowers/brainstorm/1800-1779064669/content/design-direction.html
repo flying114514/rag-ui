@@ -1,0 +1,83 @@
+<h2>设计方向</h2>
+<p class="subtitle">三种暗色 AI SaaS 视觉风格 — 选择最符合你产品气质的方向</p>
+
+<div class="cards">
+  <div class="card" data-choice="obsidian" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:24px;background:#09090b;">
+      <div style="display:flex;height:200px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);">
+        <div style="width:52px;background:#0f0f12;border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:16px;">
+          <div style="width:24px;height:24px;border-radius:6px;background:#fafafa;"></div>
+          <div style="width:18px;height:18px;border-radius:5px;background:rgba(255,255,255,0.06);"></div>
+          <div style="width:18px;height:18px;border-radius:5px;background:rgba(255,255,255,0.12);"></div>
+          <div style="width:18px;height:18px;border-radius:5px;background:rgba(255,255,255,0.06);"></div>
+        </div>
+        <div style="flex:1;background:#09090b;padding:20px;">
+          <div style="height:9px;width:80px;background:rgba(255,255,255,0.9);border-radius:3px;margin-bottom:6px;"></div>
+          <div style="height:7px;width:140px;background:rgba(255,255,255,0.2);border-radius:3px;margin-bottom:20px;"></div>
+          <div style="display:flex;gap:10px;margin-bottom:12px;">
+            <div style="height:32px;width:80px;background:#fafafa;border-radius:6px;"></div>
+            <div style="height:32px;width:80px;background:rgba(255,255,255,0.06);border-radius:6px;border:1px solid rgba(255,255,255,0.1);"></div>
+          </div>
+          <div style="height:70px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid rgba(255,255,255,0.06);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. Obsidian Minimal</h3>
+      <p>极致克制。近乎纯黑背景，白色文字，几乎无彩色。靠排版、留白和微妙的边框层次感说话。<br><strong>参考：</strong>Linear, Raycast, Arc<br><strong>关键词：</strong>冷静、专业、高密度信息</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="aurora" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:24px;background:#09090b;">
+      <div style="display:flex;height:200px;border-radius:10px;overflow:hidden;border:1px solid rgba(139,92,246,0.15);">
+        <div style="width:52px;background:linear-gradient(180deg,#0f0f14 0%,#0d0b1a 100%);border-right:1px solid rgba(139,92,246,0.1);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:16px;">
+          <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#8b5cf6,#6366f1);box-shadow:0 0 12px rgba(139,92,246,0.4);"></div>
+          <div style="width:18px;height:18px;border-radius:5px;background:rgba(139,92,246,0.12);"></div>
+          <div style="width:18px;height:18px;border-radius:5px;background:rgba(139,92,246,0.25);border:1px solid rgba(139,92,246,0.3);"></div>
+          <div style="width:18px;height:18px;border-radius:5px;background:rgba(139,92,246,0.12);"></div>
+        </div>
+        <div style="flex:1;background:linear-gradient(135deg,#09090b 0%,#0d0b14 100%);padding:20px;position:relative;">
+          <div style="position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle,rgba(139,92,246,0.08),transparent 70%);"></div>
+          <div style="height:9px;width:80px;background:rgba(255,255,255,0.9);border-radius:3px;margin-bottom:6px;"></div>
+          <div style="height:7px;width:140px;background:rgba(255,255,255,0.25);border-radius:3px;margin-bottom:20px;"></div>
+          <div style="display:flex;gap:10px;margin-bottom:12px;">
+            <div style="height:32px;width:80px;background:linear-gradient(135deg,#8b5cf6,#6366f1);border-radius:6px;box-shadow:0 4px 12px rgba(99,102,241,0.3);"></div>
+            <div style="height:32px;width:80px;background:rgba(139,92,246,0.08);border-radius:6px;border:1px solid rgba(139,92,246,0.2);"></div>
+          </div>
+          <div style="height:70px;background:rgba(139,92,246,0.04);border-radius:8px;border:1px solid rgba(139,92,246,0.1);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. Aurora Gradient</h3>
+      <p>暗色基底 + 紫/蓝渐变光晕。按钮和重点元素带微光效果，更有"AI 感"和未来感。<br><strong>参考：</strong>Vercel, GitHub Copilot, Cursor<br><strong>关键词：</strong>科技感、AI Native、有温度的暗色</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="carbon" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:24px;background:#09090b;">
+      <div style="display:flex;height:200px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);">
+        <div style="width:52px;background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:16px;">
+          <div style="width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);"></div>
+          <div style="width:18px;height:18px;border-radius:5px;background:rgba(255,255,255,0.05);"></div>
+          <div style="width:18px;height:18px;border-radius:5px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);"></div>
+          <div style="width:18px;height:18px;border-radius:5px;background:rgba(255,255,255,0.05);"></div>
+        </div>
+        <div style="flex:1;background:#09090b;padding:20px;">
+          <div style="height:9px;width:80px;background:rgba(255,255,255,0.85);border-radius:3px;margin-bottom:6px;"></div>
+          <div style="height:7px;width:140px;background:rgba(255,255,255,0.2);border-radius:3px;margin-bottom:20px;"></div>
+          <div style="display:flex;gap:10px;margin-bottom:12px;">
+            <div style="height:32px;width:80px;background:rgba(255,255,255,0.08);border-radius:8px;border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(10px);"></div>
+            <div style="height:32px;width:80px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(255,255,255,0.08);"></div>
+          </div>
+          <div style="height:70px;background:rgba(255,255,255,0.02);border-radius:10px;border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(8px);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. Carbon Depth</h3>
+      <p>多层半透明表面叠加，通过 blur 和微妙的透明度差异创造深度。无彩色强调，靠层次说话。<br><strong>参考：</strong>Apple Vision Pro, macOS Dark, Figma<br><strong>关键词：</strong>层次感、磨砂质感、沉浸、高级灰</p>
+    </div>
+  </div>
+</div>
