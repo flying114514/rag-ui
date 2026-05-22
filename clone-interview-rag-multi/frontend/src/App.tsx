@@ -155,10 +155,10 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route element={<RequireAuth />}>
-            <Route path="/" element={<AppLayout />}>
-              <Route index element={<Navigate to="/upload" replace />} />
-              <Route path="upload" element={<UploadPageWrapper />} />
+          <Route path="/" element={<AppLayout />}>
+            <Route index element={<Navigate to="/upload" replace />} />
+            <Route path="upload" element={<UploadPageWrapper />} />
+            <Route element={<RequireAuth />}>
               <Route path="history" element={<HistoryListWrapper />} />
               <Route path="resume-builder" element={<ResumeGenerateHubPage />} />
               <Route path="resume-builder/ai" element={<ResumeAiWizardPage />} />

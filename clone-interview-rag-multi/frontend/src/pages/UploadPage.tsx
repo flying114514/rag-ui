@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, BookOpen, FileText, Loader2, Upload, Users } from 'lucide-react';
 import { resumeApi } from '../api/resume';
 import { getErrorMessage } from '../api/request';
+import { useAuth } from '../hooks/useAuth';
 
 interface UploadPageProps {
   onUploadComplete: (resumeId: number) => void;
@@ -11,11 +12,20 @@ interface UploadPageProps {
 
 export default function UploadPage({ onUploadComplete }: UploadPageProps) {
   const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
   const [activeSection, setActiveSection] = useState(0);
+
+  const handleUploadClick = () => {
+    if (!isLoggedIn) {
+      navigate('/login', { state: { from: '/upload' } });
+      return;
+    }
+    fileInputRef.current?.click();
+  };
 
   const handleUpload = async (file: File) => {
     setUploading(true);
@@ -54,7 +64,7 @@ export default function UploadPage({ onUploadComplete }: UploadPageProps) {
 
       {/* Side nav dots */}
       <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-3">
-        {['UPLOAD', 'RESUME', 'INTERVIEW', 'KNOWLEDGE'].map((label, i) => (
+        {['上传', '简历', '面试', '知识'].map((label, i) => (
           <button key={label} type="button"
             onClick={() => containerRef.current?.scrollTo({ top: i * window.innerHeight, behavior: 'smooth' })}
             className="group flex items-center gap-3 cursor-pointer">
@@ -70,10 +80,10 @@ export default function UploadPage({ onUploadComplete }: UploadPageProps) {
           {activeSection === 0 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}
               className="flex flex-col items-center text-center px-8">
-              <p className="text-[10px] font-medium uppercase tracking-[0.5em] text-[var(--color-accent)] mb-8">AI-POWERED PLATFORM</p>
-              <h1 className="text-editorial text-[clamp(40px,9vw,130px)] text-white leading-[0.85]">PREPARE YOUR<br /><span className="italic">NEXT INTERVIEW</span></h1>
+              <p className="text-[10px] font-medium uppercase tracking-[0.5em] text-[var(--color-accent)] mb-8">AI 智能面试平台</p>
+              <h1 className="text-editorial text-[clamp(40px,9vw,130px)] text-white leading-[0.85]">准备你的<br /><span className="italic">下一场面试</span></h1>
               <p className="mt-8 text-[15px] text-white/45 max-w-[480px]">上传简历，AI 自动分析并生成面试策略</p>
-              <motion.button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
+              <motion.button type="button" onClick={handleUploadClick} disabled={uploading}
                 className="mt-14 group relative flex h-32 w-32 mx-auto items-center justify-center rounded-full cursor-pointer"
                 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <div className="absolute inset-0 rounded-full border border-white/20 group-hover:border-[var(--color-accent)]/60 transition-all duration-700" />
@@ -81,7 +91,7 @@ export default function UploadPage({ onUploadComplete }: UploadPageProps) {
                 <div className="absolute inset-0 rounded-full group-hover:bg-[var(--color-accent)]/5 group-hover:shadow-[0_0_60px_rgba(200,149,108,0.2)] transition-all duration-700" />
                 <svg className="absolute inset-0 w-full h-full animate-[spin_8s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-700" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="rgba(200,149,108,0.4)" strokeWidth="0.5" strokeDasharray="20 80" strokeLinecap="round" /></svg>
                 {uploading ? <Loader2 className="h-7 w-7 text-[var(--color-accent)] animate-spin" /> : <Upload className="h-7 w-7 text-white/50 group-hover:text-[var(--color-accent)] transition-colors duration-500" />}
-                <span className="absolute -bottom-10 text-[9px] font-medium uppercase tracking-[0.3em] text-white/30 group-hover:text-[var(--color-accent)] transition-colors">{uploading ? 'ANALYZING...' : 'UPLOAD RESUME'}</span>
+                <span className="absolute -bottom-10 text-[9px] font-medium uppercase tracking-[0.3em] text-white/30 group-hover:text-[var(--color-accent)] transition-colors">{uploading ? '分析中…' : '上传简历'}</span>
               </motion.button>
               {error && <p className="mt-12 text-[13px] text-rose-300">{error}</p>}
             </motion.div>
@@ -103,8 +113,8 @@ export default function UploadPage({ onUploadComplete }: UploadPageProps) {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
               </div>
               <div className="flex-1 lg:pl-12">
-                <div className="flex items-center gap-4 mb-8"><div className="w-12 h-[1px] bg-[var(--color-accent)]" /><span className="text-[10px] font-medium uppercase tracking-[0.4em] text-[var(--color-accent)]">RESUME BUILDER</span></div>
-                <h2 className="text-editorial text-[clamp(32px,6vw,80px)] text-white leading-[0.9]">BUILD YOUR<br /><span className="italic">PERFECT RESUME</span></h2>
+                <div className="flex items-center gap-4 mb-8"><div className="w-12 h-[1px] bg-[var(--color-accent)]" /><span className="text-[10px] font-medium uppercase tracking-[0.4em] text-[var(--color-accent)]">简历生成</span></div>
+                <h2 className="text-editorial text-[clamp(32px,6vw,80px)] text-white leading-[0.9]">打造你的<br /><span className="italic">完美简历</span></h2>
                 <p className="mt-6 text-[14px] text-white/40 max-w-[380px]">使用 AI 或模板创建专业简历，一键生成</p>
                 <ActionButton icon={FileText} label="开始创建" onClick={() => navigate('/resume-builder')} />
               </div>
@@ -121,8 +131,8 @@ export default function UploadPage({ onUploadComplete }: UploadPageProps) {
           {activeSection === 2 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}
               className="relative z-10 px-8 md:px-16 lg:px-24 pb-28 w-full">
-              <span className="text-[10px] font-medium uppercase tracking-[0.4em] text-[var(--color-accent)] mb-4 block">MOCK INTERVIEW</span>
-              <h2 className="text-editorial text-[clamp(36px,7vw,90px)] text-white leading-[0.9]">MASTER THE<br /><span className="italic">ART OF INTERVIEW</span></h2>
+              <span className="text-[10px] font-medium uppercase tracking-[0.4em] text-[var(--color-accent)] mb-4 block">模拟面试</span>
+              <h2 className="text-editorial text-[clamp(36px,7vw,90px)] text-white leading-[0.9]">掌握<br /><span className="italic">面试技巧</span></h2>
               <p className="mt-5 text-[14px] text-white/45 max-w-[420px]">智能模拟面试，实时反馈，持续提升表现</p>
               <ActionButton icon={Users} label="模拟面试" onClick={() => navigate('/interviews')} />
             </motion.div>
@@ -137,8 +147,8 @@ export default function UploadPage({ onUploadComplete }: UploadPageProps) {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}
               className="flex w-full h-full items-center px-8 md:px-16 lg:px-24">
               <div className="flex-1 max-w-[550px]">
-                <div className="flex items-center gap-4 mb-8"><div className="w-12 h-[1px] bg-[var(--color-accent)]" /><span className="text-[10px] font-medium uppercase tracking-[0.4em] text-[var(--color-accent)]">KNOWLEDGE BASE</span></div>
-                <h2 className="text-editorial text-[clamp(32px,6vw,80px)] text-white leading-[0.9]">EXPLORE YOUR<br /><span className="italic">KNOWLEDGE BASE</span></h2>
+                <div className="flex items-center gap-4 mb-8"><div className="w-12 h-[1px] bg-[var(--color-accent)]" /><span className="text-[10px] font-medium uppercase tracking-[0.4em] text-[var(--color-accent)]">知识库</span></div>
+                <h2 className="text-editorial text-[clamp(32px,6vw,80px)] text-white leading-[0.9]">探索你的<br /><span className="italic">知识库</span></h2>
                 <p className="mt-6 text-[14px] text-white/40 max-w-[380px]">构建个人知识库，AI 问答助手随时待命</p>
                 <ActionButton icon={BookOpen} label="知识问答" onClick={() => navigate('/knowledgebase')} />
               </div>

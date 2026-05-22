@@ -57,9 +57,9 @@ export default function RegisterPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Start your<br />
+              今天开启<br />
               <span className="bg-gradient-to-r from-purple-300 via-pink-200 to-amber-200 bg-clip-text text-transparent animate-gradient">
-                journey today
+                你的旅程
               </span>
             </motion.h1>
             <motion.p
@@ -72,7 +72,7 @@ export default function RegisterPage() {
             </motion.p>
           </div>
 
-          <p className="text-[12px] text-white/25 tracking-wider uppercase">Your data stays private</p>
+          <p className="text-[12px] text-white/25 tracking-wider uppercase">你的数据完全私密</p>
         </motion.div>
       </div>
 
@@ -90,7 +90,7 @@ export default function RegisterPage() {
             <span className="text-display text-[18px] text-[var(--color-ink)]">Interview</span>
           </div>
 
-          <h1 className="text-display text-[32px] text-[var(--color-ink)]">Create account</h1>
+          <h1 className="text-display text-[32px] text-[var(--color-ink)]">创建账号</h1>
           <p className="mt-3 text-[15px] text-[var(--color-ink-muted)]">用户名 3~64 字符，密码至少 8 位</p>
 
           <form onSubmit={handleSubmit} className="mt-10 space-y-5">

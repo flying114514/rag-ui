@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { Database, FileStack, FileText, Menu, MessageSquare, Sparkles, Users, X } from 'lucide-react';
+import { Database, FileStack, FileText, LogIn, Menu, MessageSquare, Sparkles, UserPlus, Users, X } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { clearAuthSession } from '@/api/auth';
+import { useAuth } from '@/hooks/useAuth';
 import { AnimatePresence, motion } from 'framer-motion';
 
 interface NavItem { path: string; label: string; icon: LucideIcon; }
 
 const navItems: NavItem[] = [
-  { path: '/upload', label: 'HOME', icon: Sparkles },
-  { path: '/history', label: 'RESUMES', icon: FileStack },
-  { path: '/resume-builder', label: 'BUILDER', icon: FileText },
-  { path: '/interviews', label: 'INTERVIEWS', icon: Users },
-  { path: '/knowledgebase', label: 'KNOWLEDGE', icon: Database },
-  { path: '/knowledgebase/chat', label: 'CHAT', icon: MessageSquare },
+  { path: '/upload', label: '首页', icon: Sparkles },
+  { path: '/history', label: '简历库', icon: FileStack },
+  { path: '/resume-builder', label: '简历生成', icon: FileText },
+  { path: '/interviews', label: '面试记录', icon: Users },
+  { path: '/knowledgebase', label: '知识库', icon: Database },
+  { path: '/knowledgebase/chat', label: '问答助手', icon: MessageSquare },
 ];
 
 function isActive(currentPath: string, itemPath: string) {
@@ -27,6 +28,7 @@ export function AppLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
   const isHome = location.pathname === '/upload';
   const isInterview = location.pathname.startsWith('/interview/');
 
@@ -51,7 +53,7 @@ export function AppLayout() {
       )}>
         <div className="mx-auto flex h-20 max-w-[1600px] items-center justify-between px-8 md:px-12">
           <Link to="/upload">
-            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[var(--color-cream)]">AI INTERVIEW</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[var(--color-cream)]">AI 面试官</span>
           </Link>
 
           <nav className="hidden lg:flex items-center">
@@ -71,10 +73,26 @@ export function AppLayout() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <button type="button" onClick={() => { clearAuthSession(); navigate('/login', { replace: true }); }}
-              className="hidden lg:block text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-stone-light)] hover:text-[var(--color-cream)] transition-colors cursor-pointer">
-              LOGOUT
-            </button>
+            {isLoggedIn ? (
+              <button type="button" onClick={() => { clearAuthSession(); navigate('/login', { replace: true }); }}
+                className="hidden lg:block text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-stone-light)] hover:text-[var(--color-cream)] transition-colors cursor-pointer">
+                退出登录
+              </button>
+            ) : (
+              <div className="hidden lg:flex items-center gap-2">
+                <button type="button" onClick={() => navigate('/login')}
+                  className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-stone-light)] hover:text-[var(--color-cream)] transition-colors cursor-pointer">
+                  <LogIn className="h-3.5 w-3.5" />
+                  登录
+                </button>
+                <span className="text-white/15">|</span>
+                <button type="button" onClick={() => navigate('/register')}
+                  className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-stone-light)] hover:text-[var(--color-cream)] transition-colors cursor-pointer">
+                  <UserPlus className="h-3.5 w-3.5" />
+                  注册
+                </button>
+              </div>
+            )}
             <button type="button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="flex h-9 w-9 items-center justify-center text-[var(--color-cream)] lg:hidden">
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -97,6 +115,18 @@ export function AppLayout() {
                     </Link>
                   );
                 })}
+                {!isLoggedIn && (
+                  <div className="mt-2 pt-2 border-t border-white/[0.06] flex gap-4">
+                    <button type="button" onClick={() => { setMobileMenuOpen(false); navigate('/login'); }}
+                      className="flex items-center gap-1.5 py-2.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-stone-light)]">
+                      <LogIn className="h-3.5 w-3.5" /> 登录
+                    </button>
+                    <button type="button" onClick={() => { setMobileMenuOpen(false); navigate('/register'); }}
+                      className="flex items-center gap-1.5 py-2.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-stone-light)]">
+                      <UserPlus className="h-3.5 w-3.5" /> 注册
+                    </button>
+                  </div>
+                )}
               </nav>
             </motion.div>
           )}

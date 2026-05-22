@@ -70,11 +70,11 @@ export default function LoginPage() {
         >
           <div className="mb-12 flex items-center gap-3">
             <div className="h-[2px] w-8 bg-[var(--color-accent)]" />
-            <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--color-stone)]">AI Interview Platform</span>
+            <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[var(--color-stone)]">AI 面试平台</span>
           </div>
 
           <h2 className="text-display text-[clamp(32px,5vw,44px)] text-[var(--color-cream)]">
-            Welcome<br />back
+            欢迎<br />回来
           </h2>
           <p className="mt-4 text-[15px] text-[var(--color-stone)]">登录你的账号继续使用</p>
 
